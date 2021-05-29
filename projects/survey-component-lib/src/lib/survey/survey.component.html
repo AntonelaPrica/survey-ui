@@ -1,0 +1,39 @@
+<h2 class="page-title">Build Survey</h2>
+
+<mat-card>
+  <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+      <mat-label *ngIf="editMode">Survey Title</mat-label>
+      <input matInput formControlName="surveyTitle" [value]="surveyForm.get('surveyTitle').value" required
+             [readonly]="!editMode">
+    </mat-form-field>
+
+    <mat-card-content style="height: fit-content">
+      <div *ngIf="editMode">
+        <button type="button" mat-raised-button (click)="onAddQuestion()">
+          Add Question
+        </button>
+      </div>
+
+      <div style="display: block; height: fit-content">
+        <mat-list>
+          <mat-list-item formArrayName="surveyQuestions" style="height: auto"
+                         *ngFor="let question of surveyForm.get('surveyQuestions')['controls']; let i=index">
+            <mat-divider></mat-divider>
+            <sv-survey-question [questionGroup]="question" [editMode]="editMode" [questionIndex]="i"
+                                        (questionDeleted)="onDeleteQuestion($event)"
+                                        style="display: block"></sv-survey-question>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button color="primary" type="submit" mat-raised-button>
+        Submit
+      </button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>

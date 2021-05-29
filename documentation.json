@@ -1,0 +1,612 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "classes": [],
+    "directives": [],
+    "components": [],
+    "modules": [
+        {
+            "name": "ContentFieldTableModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ContentFieldTableComponent"
+                        },
+                        {
+                            "name": "ContentFieldTableItemComponent"
+                        },
+                        {
+                            "name": "ContentFieldTableItemExpandedComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ContentFieldTableComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "config",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                "type": "ContentFieldConfig",
+                "defaultValue": "{\r\n  selectable: false,\r\n  expandable: false,\r\n}"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/sagabook-component-lib/src/test.ts",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "dataSource",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                "type": "ContentFieldTable",
+                "defaultValue": "{\r\n  headers: ['Player', 'Line', 'Label', 'Text'],\r\n  rows: [\r\n    {\r\n      key: '1',\r\n      selected: false,\r\n      expanded: false,\r\n      form: formGroupRow1,\r\n      fields: [\r\n        {key: 'player', value: 'Player 1', type: ContentFieldType.TextField},\r\n        {key: 'line', displayLabel: 'Line', type: ContentFieldType.FormField},\r\n        {key: 'label', displayLabel: 'Label', type: ContentFieldType.FormField},\r\n        {key: 'text', value: '1', type: ContentFieldType.TextField}\r\n      ],\r\n      expandedFields: [\r\n        {key: 'Field 1', value: '13535'},\r\n        {key: 'Field 2', value: '23535'},\r\n        {key: 'Field 3', value: '33535'},\r\n        {key: 'Field 4', value: '43535'},\r\n        {key: 'Field 5', value: '53535'},\r\n        {key: 'Owner', value: 'Bob'},\r\n      ]\r\n    },\r\n    {\r\n      key: '2',\r\n      selected: false,\r\n      expanded: false,\r\n      form: formGroupRow2,\r\n      fields: [\r\n        {key: 'player', value: 'Player 2', type: ContentFieldType.TextField},\r\n        {key: 'line', displayLabel: 'Line', type: ContentFieldType.FormField},\r\n        {key: 'label', displayLabel: 'Label', type: ContentFieldType.FormField},\r\n        {key: 'text', value: 'lorem ipsum', type: ContentFieldType.TextField}\r\n      ],\r\n      expandedFields: [\r\n        {key: 'Additional Information', value: '13535'},\r\n        {key: 'Owner', value: 'Tim'},\r\n      ]\r\n    }\r\n  ]\r\n}"
+            },
+            {
+                "name": "formGroupRow1",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                "type": "",
+                "defaultValue": "new FormGroup({\r\n  line: new FormControl('', [Validators.required]),\r\n  label: new FormControl('', [Validators.required])\r\n})"
+            },
+            {
+                "name": "formGroupRow2",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                "type": "",
+                "defaultValue": "new FormGroup({\r\n  line: new FormControl('', [Validators.required]),\r\n  label: new FormControl('', [Validators.required])\r\n})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/sagabook-component-lib/src/test.ts",
+                "type": "literal type"
+            }
+        ],
+        "functions": [
+            {
+                "name": "mapToChangeEvent",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "description": "",
+                "args": [
+                    {
+                        "name": "key"
+                    },
+                    {
+                        "name": "value",
+                        "type": "any"
+                    }
+                ],
+                "returnType": "ContentFieldRowChangeEvent",
+                "jsdoctags": [
+                    {
+                        "name": "key",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "value",
+                        "type": "any",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "mapToExpandedEvent",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "description": "",
+                "args": [
+                    {
+                        "name": "key"
+                    },
+                    {
+                        "name": "expanded",
+                        "type": "any"
+                    }
+                ],
+                "returnType": "ContentFieldRowExpandedEvent",
+                "jsdoctags": [
+                    {
+                        "name": "key",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "expanded",
+                        "type": "any",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "mapToSelectedEvent",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "description": "",
+                "args": [
+                    {
+                        "name": "key"
+                    },
+                    {
+                        "name": "selected",
+                        "type": "any"
+                    }
+                ],
+                "returnType": "ContentFieldRowSelectedEvent",
+                "jsdoctags": [
+                    {
+                        "name": "key",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "selected",
+                        "type": "any",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
+        "typealiases": [
+            {
+                "name": "ReadonlyFieldType",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "ContentFieldType.TextField",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.interface.ts",
+                "description": "",
+                "kind": 161
+            }
+        ],
+        "enumerations": [
+            {
+                "name": "ContentFieldType",
+                "childs": [
+                    {
+                        "name": "FormField",
+                        "value": "FormField"
+                    },
+                    {
+                        "name": "TextField",
+                        "value": "TextField"
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "description": "",
+                "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.interface.ts"
+            }
+        ],
+        "groupedVariables": {
+            "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts": [
+                {
+                    "name": "config",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                    "type": "ContentFieldConfig",
+                    "defaultValue": "{\r\n  selectable: false,\r\n  expandable: false,\r\n}"
+                },
+                {
+                    "name": "dataSource",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                    "type": "ContentFieldTable",
+                    "defaultValue": "{\r\n  headers: ['Player', 'Line', 'Label', 'Text'],\r\n  rows: [\r\n    {\r\n      key: '1',\r\n      selected: false,\r\n      expanded: false,\r\n      form: formGroupRow1,\r\n      fields: [\r\n        {key: 'player', value: 'Player 1', type: ContentFieldType.TextField},\r\n        {key: 'line', displayLabel: 'Line', type: ContentFieldType.FormField},\r\n        {key: 'label', displayLabel: 'Label', type: ContentFieldType.FormField},\r\n        {key: 'text', value: '1', type: ContentFieldType.TextField}\r\n      ],\r\n      expandedFields: [\r\n        {key: 'Field 1', value: '13535'},\r\n        {key: 'Field 2', value: '23535'},\r\n        {key: 'Field 3', value: '33535'},\r\n        {key: 'Field 4', value: '43535'},\r\n        {key: 'Field 5', value: '53535'},\r\n        {key: 'Owner', value: 'Bob'},\r\n      ]\r\n    },\r\n    {\r\n      key: '2',\r\n      selected: false,\r\n      expanded: false,\r\n      form: formGroupRow2,\r\n      fields: [\r\n        {key: 'player', value: 'Player 2', type: ContentFieldType.TextField},\r\n        {key: 'line', displayLabel: 'Line', type: ContentFieldType.FormField},\r\n        {key: 'label', displayLabel: 'Label', type: ContentFieldType.FormField},\r\n        {key: 'text', value: 'lorem ipsum', type: ContentFieldType.TextField}\r\n      ],\r\n      expandedFields: [\r\n        {key: 'Additional Information', value: '13535'},\r\n        {key: 'Owner', value: 'Tim'},\r\n      ]\r\n    }\r\n  ]\r\n}"
+                },
+                {
+                    "name": "formGroupRow1",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                    "type": "",
+                    "defaultValue": "new FormGroup({\r\n  line: new FormControl('', [Validators.required]),\r\n  label: new FormControl('', [Validators.required])\r\n})"
+                },
+                {
+                    "name": "formGroupRow2",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                    "type": "",
+                    "defaultValue": "new FormGroup({\r\n  line: new FormControl('', [Validators.required]),\r\n  label: new FormControl('', [Validators.required])\r\n})"
+                }
+            ],
+            "projects/sagabook-component-lib/src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/sagabook-component-lib/src/test.ts",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/sagabook-component-lib/src/test.ts",
+                    "type": "literal type"
+                }
+            ]
+        },
+        "groupedFunctions": {
+            "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts": [
+                {
+                    "name": "mapToChangeEvent",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "key"
+                        },
+                        {
+                            "name": "value",
+                            "type": "any"
+                        }
+                    ],
+                    "returnType": "ContentFieldRowChangeEvent",
+                    "jsdoctags": [
+                        {
+                            "name": "key",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "mapToExpandedEvent",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "key"
+                        },
+                        {
+                            "name": "expanded",
+                            "type": "any"
+                        }
+                    ],
+                    "returnType": "ContentFieldRowExpandedEvent",
+                    "jsdoctags": [
+                        {
+                            "name": "key",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "expanded",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "mapToSelectedEvent",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "key"
+                        },
+                        {
+                            "name": "selected",
+                            "type": "any"
+                        }
+                    ],
+                    "returnType": "ContentFieldRowSelectedEvent",
+                    "jsdoctags": [
+                        {
+                            "name": "key",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "selected",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "groupedEnumerations": {
+            "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.interface.ts": [
+                {
+                    "name": "ContentFieldType",
+                    "childs": [
+                        {
+                            "name": "FormField",
+                            "value": "FormField"
+                        },
+                        {
+                            "name": "TextField",
+                            "value": "TextField"
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "description": "",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.interface.ts"
+                }
+            ]
+        },
+        "groupedTypeAliases": {
+            "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.interface.ts": [
+                {
+                    "name": "ReadonlyFieldType",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "ContentFieldType.TextField",
+                    "file": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.interface.ts",
+                    "description": "",
+                    "kind": 161
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-format.interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ContentFieldTable",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item-expanded/content-field-table-item-expanded.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ContentFieldTableItemExpandedComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item-expanded/content-field-table-item-expanded.interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ExpandedContentField",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ContentFieldTableItemComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/17",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.config.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ContentFieldConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ContentFieldRowChangeEvent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ContentFieldRowExpandedEvent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ContentFieldRowSelectedEvent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "type": "function",
+                "linksubtype": "function",
+                "name": "mapToChangeEvent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "type": "function",
+                "linksubtype": "function",
+                "name": "mapToExpandedEvent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.events.ts",
+                "type": "function",
+                "linksubtype": "function",
+                "name": "mapToSelectedEvent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ContentField",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table-item/content-field-table-item.interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ContentFieldRow",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ContentFieldTableComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "config",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "dataSource",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "formGroupRow1",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/lib/content-field-table/content-field-table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "formGroupRow2",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/sagabook-component-lib/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

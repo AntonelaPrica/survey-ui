@@ -1,0 +1,59 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "survey-component-lib": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/survey-component-lib",
+      "sourceRoot": "projects/survey-component-lib/src",
+      "prefix": "sv",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/survey-component-lib/tsconfig.lib.json",
+            "project": "projects/survey-component-lib/ng-package.json"
+          },
+          "styles": [
+            "./node_modules/@angular/material/prebuilt-themes/purple-green.css"
+          ],
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/survey-component-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "styles": [
+            "./node_modules/@angular/material/prebuilt-themes/purple-green.css"
+          ],
+          "options": {
+            "main": "projects/survey-component-lib/src/test.ts",
+            "tsConfig": "projects/survey-component-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/survey-component-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/survey-component-lib/tsconfig.lib.json",
+              "projects/survey-component-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "survey-component-lib"
+}

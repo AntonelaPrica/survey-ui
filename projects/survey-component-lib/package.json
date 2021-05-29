@@ -1,0 +1,24 @@
+{
+  "name": "survey-component-lib",
+  "version": "1.0.0",
+  "author": "Antonela Prica",
+  "peerDependencies": {
+    "@angular/animations": "~11.1.0",
+    "@angular/cdk": "^11.2.3",
+    "@angular/common": "~11.1.0",
+    "@angular/compiler": "~11.1.0",
+    "@angular/core": "~11.1.0",
+    "@angular/forms": "~11.1.0",
+    "@angular/material": "^11.2.3",
+    "@angular/platform-browser": "~11.1.0",
+    "@angular/platform-browser-dynamic": "~11.1.0",
+    "@angular/router": "~11.1.0",
+    "rxjs": "~6.6.0",
+    "save-dev": "0.0.1-security",
+    "tslib": "^2.0.0",
+    "zone.js": "~0.11.3"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
