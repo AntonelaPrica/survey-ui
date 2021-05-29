@@ -1,0 +1,5 @@
+{
+    "extends": "../projects/survey-component-lib/tsconfig.lib.json",
+    "exclude": ["../src/test.ts", "../src/**/*spec.ts", "../projects/**/*spec.ts"],
+    "include": ["../projects/survey-component-lib/**/*"]
+}
