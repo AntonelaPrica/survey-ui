@@ -5,7 +5,7 @@
 .survey-question-container{
     display: grid;
     grid-template-columns: 1fr 0.1fr;
-    grid-gap: 20px;
+    grid-gap: 10px;
 }
 
 .survey-question-button{

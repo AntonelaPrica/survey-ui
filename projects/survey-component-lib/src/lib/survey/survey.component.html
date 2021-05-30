@@ -10,11 +10,11 @@
         </button>
     </div>
 
-    <div *ngFor="let question of questionControlArray" class="survey-question-container">
+    <div *ngFor="let question of questionControlArray;let i = index" class="survey-question-container">
         <mat-divider class="grid-span-two"></mat-divider>
         <sv-survey-question [formGroup]="question" [isEditMode]="isEditMode"></sv-survey-question>
 
-        <button class="survey-question-button" mat-fab color="primary" *ngIf="isEditMode">
+        <button class="survey-question-button" mat-fab color="primary" (click)="onDeleteQuestion(i)" *ngIf="isEditMode && i>0">
             <mat-icon>delete</mat-icon>
         </button>
     </div>

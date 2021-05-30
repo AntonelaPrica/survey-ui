@@ -27,14 +27,14 @@ storiesOf('Survey', module)
     .addDecorator(withKnobs)
     .add('Survey Builder',
         () => ({
-            template: `<div style="width:70%; margin: 10px"><sv-survey [survey]="survey" [isEditMode]="true"></sv-survey></div>`,
+            template: `<div style="width:60%; margin: 10px"><sv-survey [survey]="survey" [isEditMode]="true"></sv-survey></div>`,
             props: {
                 survey
             }
         }))
     .add('Survey Viewer',
         () => ({
-            template: `<div style="width:70%; margin: 10px"><sv-survey [survey]="survey" [isEditMode]="false"></sv-survey></div>`,
+            template: `<div style="width:60%; margin: 10px"><sv-survey [survey]="survey" [isEditMode]="false"></sv-survey></div>`,
             props: {
                 survey
             }

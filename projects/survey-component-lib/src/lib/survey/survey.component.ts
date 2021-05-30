@@ -39,6 +39,12 @@ export class SurveyComponent implements OnInit {
         (this.formGroup?.controls?.[this.questionsControlName] as FormArray).push(question);
     }
 
+    onDeleteQuestion(index): void {
+        if (this.questionControlArray.length > 1) {
+            (this.formGroup?.controls?.[this.questionsControlName] as FormArray).removeAt(index);
+        }
+    }
+
     onSubmit(): void {
         const survey = convertFormValueToSurvey(this.formGroup.value);
         this.submit.emit(survey);
