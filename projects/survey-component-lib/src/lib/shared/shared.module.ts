@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import {SurveyQuestionModule} from '../survey/survey-question/survey-question.module';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
     imports: [
@@ -22,7 +24,8 @@ import {MatSelectModule} from '@angular/material/select';
         MatIconModule,
         MatButtonModule,
         MatCheckboxModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDividerModule
     ],
     exports: [
         ReactiveFormsModule,
@@ -35,7 +38,8 @@ import {MatSelectModule} from '@angular/material/select';
         MatIconModule,
         MatButtonModule,
         MatCheckboxModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDividerModule
     ]
 })
 export class SharedModule {

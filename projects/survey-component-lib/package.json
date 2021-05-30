@@ -1,6 +1,6 @@
 {
   "name": "survey-component-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Antonela Prica",
   "peerDependencies": {
     "@angular/animations": "~11.1.0",

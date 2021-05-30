@@ -1,46 +1,23 @@
-<form [formGroup]="questionGroup">
-
-  <div style="display: flex; flex-direction: row">
-    <mat-form-field style="width:35vw">
-      <mat-label *ngIf="editMode">Question Text</mat-label>
-      <input matInput formControlName="questionText" value="{{questionGroup.get('questionText').value}}" required
-             [readonly]="!editMode">
+<form *ngIf="formGroup" [formGroup]="formGroup" class="question-container">
+    <mat-form-field appearance="outline">
+        <mat-label>Question Text</mat-label>
+        <input matInput [formControlName]="textControlName" [readonly]="!isEditMode">
     </mat-form-field>
-
-    <button style="margin-left: 10%; margin-top: 1%; height: 50%; width: 10%;" *ngIf="questionIndex>0 && editMode" type="button" color="primary" mat-raised-button
-            (click)="questionDeleted.emit(questionIndex)">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </div>
-
-  <div *ngIf="editMode">
-    <mat-form-field>
-      <mat-select [(value)]="questionType" formControlName="questionType" (valueChange)="onQuestionTypeChange()">
-        <mat-option value="freeText">Free Text</mat-option>
-        <mat-option value="variants">Variants</mat-option>
-      </mat-select>
+    <mat-form-field appearance="outline" [class.hidden]="!isEditMode">
+        <mat-label>Question Type</mat-label>
+        <mat-select [formControlName]="selectControlName" (valueChange)="onSelectChange($event)">
+            <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.key">
+                {{questionType.value}}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
-    <button style="margin-left: 10%" *ngIf="questionGroup.get('questionType').value =='variants'" type="button" mat-raised-button
-            (click)="onAddOption()">
-      Add Option
-    </button>
-  </div>
-
-  <div>
-    <mat-form-field *ngIf="questionGroup.get('questionType').value =='freeText'" appearance="fill" style="width:30vw">
-      <mat-label>Answer</mat-label>
-      <textarea matInput [(ngModel)]="freeTextAnswer"></textarea>
-    </mat-form-field>
-  </div>
-
-  <mat-radio-group style="margin-bottom: 10%" *ngIf="questionGroup.get('questionType').value =='variants'" >
-    <mat-radio-button style="display: flex; flex-direction: column"
-                      *ngFor="let option of questionGroup.get('questionOptions')['controls']; let i=index" formArrayName="questionOptions">
-      <mat-form-field>
-        <input matInput formControl="{{questionGroup.get('questionOptions')['controls'][i]}}" value="{{questionGroup.get('questionOptions')['controls'][i].value}}" [readonly]="!editMode">
-      </mat-form-field>
-      <button mat-button *ngIf="i>1 && editMode" (click)="removeOption(i)"><mat-icon>delete_outline</mat-icon></button>
-    </mat-radio-button>
-  </mat-radio-group>
-
+    <div *ngIf="!isEditMode"></div>
+    <div *ngIf="dataControl">
+        <ng-container *ngIf="isSelectTypeFreeText; else questionVariantsComponent">
+            <sv-question-freetext [formGroup]="dataControl"></sv-question-freetext>
+        </ng-container>
+        <ng-template #questionVariantsComponent>
+            <sv-question-variants [formGroup]="dataControl" [isEditMode]="isEditMode"></sv-question-variants>
+        </ng-template>
+    </div>
 </form>

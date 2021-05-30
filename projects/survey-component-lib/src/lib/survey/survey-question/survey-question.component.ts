@@ -1,80 +1,68 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {SurveyQuestion, SurveyQuestionAnswer} from '../types/survey.types';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {QuestionVariantsControlName} from "./question-variants/question-variants.component";
+import {QuestionFreetextControlName} from "./question-freetext/question-freetext.component";
+import {createOptionControl} from "./question-variants/question-variants.utils";
+import {QuestionType, QuestionTypeKeys} from "./survey-question.types";
+
+export const SurveyQuestionControlTextName = 'text';
+export const SurveyQuestionControlSelectName = 'type';
+export const SurveyQuestionControlDataName = 'data';
 
 @Component({
-  selector: 'sv-survey-question',
-  templateUrl: 'survey-question.component.html',
-  styleUrls: ['survey-question.component.scss']
+    selector: 'sv-survey-question',
+    templateUrl: 'survey-question.component.html',
+    styleUrls: ['survey-question.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SurveyQuestionComponent implements OnInit {
-  @Input() questionGroup?: FormGroup;
-  questionType = 'freeText';
-  questionOptions: FormArray;
-  freeTextAnswer: string;
+    @Input() formGroup: FormGroup;
+    @Input() isEditMode = true;
 
-  @Input() questionIndex: number;
-  @Input() editMode: boolean;
+    textControlName = SurveyQuestionControlTextName;
+    selectControlName = SurveyQuestionControlSelectName;
+    dataControlName = SurveyQuestionControlDataName;
 
-  @Output() questionDeleted: EventEmitter<number> = new EventEmitter<number>();
+    questionTypes = Object.keys(QuestionType).map(key => ({key, value: QuestionType[key]}));
 
-  constructor(private formBuilder: FormBuilder) {
-  }
-
-  ngOnInit(): void {
-    if (this.editMode === true) {
-      this.questionGroup = this.formBuilder.group(
-        {
-          questionText: this.formBuilder.control('', [Validators.required]),
-          questionType: this.formBuilder.control('freeText', [Validators.required]),
-          questionOptions: this.formBuilder.array([this.createOption(), this.createOption()])
-        });
-    } else {
-      this.questionType = this.questionGroup.get('questionType').value;
+    ngOnInit(): void {
+        if (!this.selectControl.value) {
+            this.selectControl.setValue(QuestionTypeKeys[QuestionType.FreeText]);
+            this.ensureDataControl(QuestionTypeKeys[QuestionType.FreeText]);
+        }
     }
-  }
 
-  onAddOption(): void {
-    this.questionGroup.get('questionOptions')['controls'].push(this.createOption());
-  }
-
-  createOption(): FormControl {
-    return this.formBuilder.control('');
-  }
-
-  removeOption(index): void {
-    (this.questionGroup.get('questionOptions') as FormArray).removeAt(index);
-  }
-
-  onQuestionTypeChange(): void {
-    if (this.questionType === 'variants') {
-      this.questionOptions = this.questionGroup.get('questionOptions') as FormArray;
-      this.questionOptions.controls.splice(2);
+    get selectControl(): FormControl {
+        return this.formGroup.get(this.selectControlName) as FormControl;
     }
-  }
 
-  createSurveyQuestionFromForm(): SurveyQuestion {
-    const surveyQ = new SurveyQuestion();
-    surveyQ.questionText = this.questionGroup.get('questionText').value;
-    surveyQ.questionType = this.questionGroup.get('questionType').value;
+    get dataControl(): FormGroup {
+        return this.formGroup.get(this.dataControlName) as FormGroup;
+    }
 
-    const options = [];
-    this.questionGroup.get('questionOptions')['controls'].forEach(option => {
+    get isSelectTypeFreeText(): boolean {
+        return this.selectControl.value === QuestionTypeKeys[QuestionType.FreeText];
+    }
 
-      console.log(option);
-      options.push(option.value);
-    });
+    onSelectChange(value: string): void {
+        this.ensureDataControl(value);
+    }
 
-    surveyQ.questionOptions = this.questionGroup.get('questionOptions').value;
-    return surveyQ;
-  }
+    ensureDataControl(type: string): void {
+        const questionType = QuestionType[type];
+        this.clearDataControls();
+        if (questionType === QuestionType.FreeText) {
+            this.dataControl.addControl(QuestionFreetextControlName, new FormControl(null));
+        } else {
+            this.dataControl.addControl(QuestionVariantsControlName, new FormArray([
+                createOptionControl({isSelected: true}),
+                createOptionControl()
+            ]));
+        }
+    }
 
-  getQuestionAnswer(): SurveyQuestionAnswer{
-    console.log(this.freeTextAnswer); // undefined
-    return {
-      questionId: this.questionIndex,
-      answer: this.freeTextAnswer
-    };
-  }
-
+    clearDataControls(): void {
+        this.dataControl.removeControl(QuestionVariantsControlName);
+        this.dataControl.removeControl(QuestionFreetextControlName);
+    }
 }

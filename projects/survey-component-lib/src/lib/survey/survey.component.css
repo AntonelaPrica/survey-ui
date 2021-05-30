@@ -1,0 +1,18 @@
+.left-margin {
+    margin-left: 5%;
+}
+
+.survey-question-container{
+    display: grid;
+    grid-template-columns: 1fr 0.1fr;
+    grid-gap: 20px;
+}
+
+.survey-question-button{
+    justify-self: center;
+    align-self: start;
+}
+
+.grid-span-two{
+    grid-column: 1 / span 2;
+}

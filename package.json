@@ -1,6 +1,6 @@
 {
   "name": "survey-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Antonela Prica",
   "scripts": {
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",

@@ -12,8 +12,8 @@
                 <mat-checkbox [formControlName]="subControlRadioName" class="centered-option"
                               (click)="onCheckboxClicked(i)"></mat-checkbox>
                 <mat-form-field class="centered-option" appearance="outline">
-                    <mat-label>Text</mat-label>
-                    <textarea matInput [formControlName]="subControlTextName"></textarea>
+                    <mat-label *ngIf="isEditMode">Text</mat-label>
+                    <textarea matInput [formControlName]="subControlTextName" [readonly]="!isEditMode"></textarea>
                 </mat-form-field>
                 <button mat-fab color="none" (click)="onRemoveOption(i)" *ngIf="i>1 && isEditMode">
                     <mat-icon>delete</mat-icon>

@@ -3,7 +3,7 @@ import {FormArray, FormGroup} from '@angular/forms';
 import {createOptionControl} from './question-variants.utils';
 
 export const QuestionVariantsControlName = 'options';
-export const QuestionVariantsSubControlRadioName = 'radio';
+export const QuestionVariantsSubControlRadioName = 'isSelected';
 export const QuestionVariantsSubControlTextName = 'text';
 
 @Component({
@@ -29,10 +29,7 @@ export class QuestionVariantsComponent {
     }
 
     onCheckboxClicked(index: number): void {
-        const currentRadioControl = this.optionsControlArray[index].controls[this.subControlRadioName];
-        if (currentRadioControl.value !== false) {
-            currentRadioControl.patchValue(false, {emitEvent: false});
-        }
+
         this.optionsControlArray.forEach((value, formGroupIndex) => {
             if (formGroupIndex !== index) {
                 value.controls[this.subControlRadioName].setValue(false);
@@ -42,10 +39,6 @@ export class QuestionVariantsComponent {
 
     onRemoveOption(index: number): void {
         if (this.optionsFormArray.length > 2) {
-            const selected = this.optionsFormArray.controls[index].get(this.subControlRadioName).value;
-            if (selected) {
-                this.optionsFormArray.controls[0].get(this.subControlRadioName).setValue(true);
-            }
             (this.formGroup?.controls?.[this.controlName] as FormArray).removeAt(index);
         }
     }

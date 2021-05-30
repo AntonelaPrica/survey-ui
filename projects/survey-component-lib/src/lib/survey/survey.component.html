@@ -1,39 +1,27 @@
-<h2 class="page-title">Build Survey</h2>
+<form *ngIf="formGroup" [formGroup]="formGroup">
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Survey Title</mat-label>
+            <input matInput [formControlName]="titleControlName" [readonly]="!isEditMode">
+        </mat-form-field>
 
-<mat-card>
-  <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
-
-    <mat-form-field appearance="fill">
-      <mat-label *ngIf="editMode">Survey Title</mat-label>
-      <input matInput formControlName="surveyTitle" [value]="surveyForm.get('surveyTitle').value" required
-             [readonly]="!editMode">
-    </mat-form-field>
-
-    <mat-card-content style="height: fit-content">
-      <div *ngIf="editMode">
-        <button type="button" mat-raised-button (click)="onAddQuestion()">
-          Add Question
+        <button mat-raised-button color="primary" class="left-margin" (click)="onAddQuestion()" *ngIf="isEditMode">
+            Add Question
         </button>
-      </div>
+    </div>
 
-      <div style="display: block; height: fit-content">
-        <mat-list>
-          <mat-list-item formArrayName="surveyQuestions" style="height: auto"
-                         *ngFor="let question of surveyForm.get('surveyQuestions')['controls']; let i=index">
-            <mat-divider></mat-divider>
-            <sv-survey-question [questionGroup]="question" [editMode]="editMode" [questionIndex]="i"
-                                        (questionDeleted)="onDeleteQuestion($event)"
-                                        style="display: block"></sv-survey-question>
-          </mat-list-item>
-        </mat-list>
-      </div>
-    </mat-card-content>
+    <div *ngFor="let question of questionControlArray" class="survey-question-container">
+        <mat-divider class="grid-span-two"></mat-divider>
+        <sv-survey-question [formGroup]="question" [isEditMode]="isEditMode"></sv-survey-question>
 
-    <mat-card-actions>
-      <button color="primary" type="submit" mat-raised-button>
-        Submit
-      </button>
-    </mat-card-actions>
+        <button class="survey-question-button" mat-fab color="primary" *ngIf="isEditMode">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
 
-  </form>
-</mat-card>
+    <div>
+        <button mat-raised-button color="primary" (click)="onSubmit()">
+            Submit
+        </button>
+    </div>
+</form>

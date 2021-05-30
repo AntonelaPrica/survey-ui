@@ -1,96 +1,41 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {withKnobs} from '@storybook/addon-knobs';
 import {SurveyModule} from './survey.module';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {QuestionType, SurveySchema} from './types/survey.types';
+import {Survey} from './survey.types';
+import {QuestionType} from './survey-question/survey-question.types';
+import {QuestionVariant} from './survey-question/question-variants/question-variants.types';
 
-
-const surveyForm = new FormGroup({
-  surveyTitle: new FormControl('My survey title'),
-  surveyQuestions: new FormArray([
-    new FormGroup({
-      questionText: new FormControl('This is my question?'),
-      questionType: new FormControl('freeText'),
-      questionOptions: new FormArray([])
-    }),
-
-    new FormGroup({
-      questionText: new FormControl('Is this the second question?'),
-      questionType: new FormControl('variants'),
-      questionOptions: new FormArray([
-        new FormControl('a'), new FormControl('b'), new FormControl('c')
-      ])
-    }),
-
-    new FormGroup({
-      questionText: new FormControl('This is my question?'),
-      questionType: new FormControl('freeText'),
-      questionOptions: new FormArray([])
-    }),
-
-    new FormGroup({
-      questionText: new FormControl('This is my question?'),
-      questionType: new FormControl('freeText'),
-      questionOptions: new FormArray([])
-    }),
-
-    new FormGroup({
-      questionText: new FormControl('Is this the second question?'),
-      questionType: new FormControl('variants'),
-      questionOptions: new FormArray([
-        new FormControl('a'), new FormControl('b'), new FormControl('c')
-      ])
-    })
-  ])
-});
-
-const surveyToDisplay: SurveySchema = ({
-  surveyTitle: 'My survey title',
-  surveyQuestions: [{
-    questionText: 'This is my question?',
-    questionType: QuestionType.FreeText,
-    questionOptions: []
-  },
-    {
-      questionText: 'Is this the second question?',
-      questionType: QuestionType.Variants,
-      questionOptions: ['a', 'b', 'c']
-    },
-    {
-      questionText: 'This is my question?',
-      questionType: QuestionType.FreeText,
-      questionOptions: []
-    },
-    {
-      questionText: 'This is my question?',
-      questionType: QuestionType.FreeText,
-      questionOptions: []
-    },
-    {
-      questionText: 'Is this the second question?',
-      questionType: QuestionType.Variants,
-      questionOptions: ['a', 'b']
-    }]
-});
-
+const survey: Survey = {
+    title: 'my title',
+    questions: [
+        {
+            text: 'Variants Q',
+            type: QuestionType.Variants,
+            data: [{isSelected: false, text: 'ceva'}, {isSelected: false}, {
+                isSelected: false,
+                text: 'altceva'
+            }] as QuestionVariant[]
+        },
+    ]
+};
 
 storiesOf('Survey', module)
-  .addDecorator(moduleMetadata({
-    declarations: [],
-    imports: [SurveyModule]
-  }))
-  .addDecorator(withKnobs)
-  .add('Survey viewer',
-    () => ({
-      template: `<sb-survey [editMode]="false" [surveyToDisplay]="surveyToDisplay"></sb-survey>`,
-      props: {
-        surveyToDisplay
-      }
+    .addDecorator(moduleMetadata({
+        declarations: [],
+        imports: [SurveyModule]
     }))
-  .add( 'Survey builder',
-    () => ({
-      template: `<sb-survey [editMode]="true"></sb-survey>`,
-      props: {
-        surveyToDisplay
-      }
-    }));
+    .addDecorator(withKnobs)
+    .add('Survey Builder',
+        () => ({
+            template: `<div style="width:70%; margin: 10px"><sv-survey [survey]="survey" [isEditMode]="true"></sv-survey></div>`,
+            props: {
+                survey
+            }
+        }))
+    .add('Survey Viewer',
+        () => ({
+            template: `<div style="width:70%; margin: 10px"><sv-survey [survey]="survey" [isEditMode]="false"></sv-survey></div>`,
+            props: {
+                survey
+            }
+        }));
