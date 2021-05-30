@@ -1,0 +1,6 @@
+<form *ngIf="formGroup" [formGroup]="formGroup" class="text-container">
+    <mat-form-field appearance="outline">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput [formControlName]="controlName"></textarea>
+    </mat-form-field>
+</form>

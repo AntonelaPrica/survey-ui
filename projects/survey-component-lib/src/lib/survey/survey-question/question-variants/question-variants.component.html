@@ -1,0 +1,24 @@
+<form *ngIf="formGroup" [formGroup]="formGroup">
+    <ng-container *ngIf="optionsControlArray">
+        <div class="option-container">
+            <div></div>
+            <div class="centered-option"><h4>Options</h4></div>
+            <button mat-fab color="primary" (click)="onAddOption()" *ngIf="isEditMode">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div *ngFor="let optionControl of optionsControlArray; let i = index ">
+            <form *ngIf="optionControl" [formGroup]="optionControl" class="option-container top-padded">
+                <mat-checkbox [formControlName]="subControlRadioName" class="centered-option"
+                              (click)="onCheckboxClicked(i)"></mat-checkbox>
+                <mat-form-field class="centered-option" appearance="outline">
+                    <mat-label>Text</mat-label>
+                    <textarea matInput [formControlName]="subControlTextName"></textarea>
+                </mat-form-field>
+                <button mat-fab color="none" (click)="onRemoveOption(i)" *ngIf="i>1 && isEditMode">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </form>
+        </div>
+    </ng-container>
+</form>
