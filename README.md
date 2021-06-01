@@ -1,4 +1,4 @@
-##survey-ui
+## survey-ui
 
 ### Prerequisites
 * Node.js
