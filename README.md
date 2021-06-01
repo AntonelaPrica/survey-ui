@@ -1,4 +1,4 @@
-##survey-ui
+## survey-ui
 
 ### Prerequisites
 * Node.js
@@ -69,3 +69,5 @@ survey: Survey = {
 };
 ```
 ![viewer](https://user-images.githubusercontent.com/47983382/120333111-0bc3ee80-c2f8-11eb-890d-37a35021d170.PNG)
+
+Pressing the `Submit` button will emit the `submitSurvey` event which will contain the survey with questions or answers.
