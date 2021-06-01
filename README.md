@@ -13,7 +13,7 @@ In order to use the survey library you should install it from npm using
 `npm install survey-component-lib`.
 
 ### Survey Usage
-Use the tag `<sv-survey>` with the following properties:
+Use the tag `<sv-survey>` in your html with the following properties:
 * `survey` - object that must implement the interface *Survey* of the following form:
 ```js
 {
