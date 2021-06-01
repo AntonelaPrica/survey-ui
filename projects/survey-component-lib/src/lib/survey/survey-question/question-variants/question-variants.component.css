@@ -1,11 +1,11 @@
 .option-container {
     display: grid;
-    grid-template-columns: 60px 1fr 0.1fr;
-    grid-gap: 20px;
+    grid-template-columns: 5% 1fr 0.1fr;
+    grid-gap: 10px;
 }
 
 .top-padded {
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 .centered-option {

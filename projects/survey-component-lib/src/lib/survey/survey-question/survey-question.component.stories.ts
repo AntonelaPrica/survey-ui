@@ -5,19 +5,24 @@ import {createSurveyQuestion} from './survey-question.utils';
 import {QuestionType} from './survey-question.types';
 import {QuestionVariant} from './question-variants/question-variants.types';
 
-const surveyFreeTextQuestionForm = createSurveyQuestion({
-    text: 'Free Text Q',
+const surveyQuestionFormBuilder = createSurveyQuestion({
+    text: '',
     type: QuestionType.FreeText,
-    data: 'ceva'
+    data: ''
 });
 
-const surveyVariantsQuestionForm = createSurveyQuestion({
-    text: 'Variants Q',
+const surveyFreeTextQuestionFormViewer = createSurveyQuestion({
+    text: 'What is the official language of the Canadian province Quebec?',
+    type: QuestionType.FreeText,
+    data: ''
+});
+
+const surveyVariantsQuestionFormViewer = createSurveyQuestion({
+    text: 'Which is the largest continent on Earth?',
     type: QuestionType.Variants,
-    data: [{isSelected: true, text: 'ceva'}, {isSelected: false}, {
-        isSelected: false,
-        text: 'altceva'
-    }] as QuestionVariant[]
+    data: [{isSelected: false, text: 'Europe'},
+        {isSelected: false, text: 'Asia'},
+        {isSelected: false, text: 'South America'}] as QuestionVariant[]
 });
 
 storiesOf('Survey Question', module)
@@ -26,31 +31,24 @@ storiesOf('Survey Question', module)
         imports: [SurveyQuestionModule]
     }))
     .addDecorator(withKnobs)
-    .add('Survey Free Text Question Builder',
+    .add('Survey Question Builder',
         () => ({
-            template: `<sv-survey-question [formGroup]="surveyFreeTextQuestionForm"></sv-survey-question>`,
+            template: `<sv-survey-question [formGroup]="surveyQuestionFormBuilder" [isEditMode]="true"></sv-survey-question>`,
             props: {
-                surveyFreeTextQuestionForm
-            }
-        }))
-    .add('Survey Variants Question Builder',
-        () => ({
-            template: `<sv-survey-question [formGroup]="surveyVariantsQuestionForm"></sv-survey-question>`,
-            props: {
-                surveyVariantsQuestionForm
+                surveyQuestionFormBuilder
             }
         }))
     .add('Survey Free Text Question Viewer',
         () => ({
-            template: `<sv-survey-question [formGroup]="surveyFreeTextQuestionForm" [isEditMode]="false"></sv-survey-question>`,
+            template: `<sv-survey-question [formGroup]="surveyFreeTextQuestionFormViewer" [isEditMode]="false"></sv-survey-question>`,
             props: {
-                surveyFreeTextQuestionForm
+                surveyFreeTextQuestionFormViewer
             }
         }))
     .add('Survey Variants Question Viewer',
         () => ({
-            template: `<sv-survey-question [formGroup]="surveyVariantsQuestionForm" [isEditMode]="false"></sv-survey-question>`,
+            template: `<sv-survey-question [formGroup]="surveyVariantsQuestionFormViewer" [isEditMode]="false"></sv-survey-question>`,
             props: {
-                surveyVariantsQuestionForm
+                surveyVariantsQuestionFormViewer
             }
         }));

@@ -1,5 +1,5 @@
 import {QuestionVariant, QuestionVariantForm} from './question-variants/question-variants.types';
-import {QuestionFreeTextForm} from "./question-freetext/question-freetext.types";
+import {QuestionFreeTextForm} from './question-freetext/question-freetext.types';
 
 export enum QuestionType {
     FreeText = 'Free Text',

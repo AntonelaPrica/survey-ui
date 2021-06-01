@@ -6,11 +6,18 @@ import {QuestionVariantsControlName} from './question-variants.component';
 import {createOptionControl} from './question-variants.utils';
 
 
-const variantsFormGroup = new FormGroup({
+const variantsFormGroupBuilder = new FormGroup({
     [QuestionVariantsControlName]: new FormArray([
         createOptionControl({isSelected: true}),
         createOptionControl(),
         createOptionControl()
+    ])
+});
+
+const variantsFormGroupViewer = new FormGroup({
+    [QuestionVariantsControlName]: new FormArray([
+        createOptionControl({ text: 'Asia', isSelected: false}),
+        createOptionControl({ text: 'South America', isSelected: false})
     ])
 });
 
@@ -22,15 +29,15 @@ storiesOf('Question Variants', module)
     .addDecorator(withKnobs)
     .add('Question Variants Builder',
         () => ({
-            template: `<sv-question-variants [formGroup]="variantsFormGroup"></sv-question-variants>`,
+            template: `<sv-question-variants [formGroup]="variantsFormGroupBuilder" [isEditMode]="true"></sv-question-variants>`,
             props: {
-                variantsFormGroup
+                variantsFormGroupBuilder
             }
         }))
     .add('Question Variants Viewer',
         () => ({
-            template: `<sv-question-variants [formGroup]="variantsFormGroup" [isEditMode]="false"></sv-question-variants>`,
+            template: `<sv-question-variants [formGroup]="variantsFormGroupViewer" [isEditMode]="false"></sv-question-variants>`,
             props: {
-                variantsFormGroup
+                variantsFormGroupViewer
             }
         }));

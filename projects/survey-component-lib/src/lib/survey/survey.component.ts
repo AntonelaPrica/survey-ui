@@ -16,7 +16,7 @@ export const SurveyControlQuestions = 'questions';
 export class SurveyComponent implements OnInit {
     @Input() survey: Survey;
     @Input() isEditMode = true;
-    @Output() submit: EventEmitter<Survey> = new EventEmitter<Survey>();
+    @Output() submitSurvey: EventEmitter<Survey> = new EventEmitter<Survey>();
 
     formGroup: FormGroup;
     titleControlName = SurveyControlTitle;
@@ -47,7 +47,7 @@ export class SurveyComponent implements OnInit {
 
     onSubmit(): void {
         const survey = convertFormValueToSurvey(this.formGroup.value);
-        this.submit.emit(survey);
+        console.log(survey);
+        this.submitSurvey.emit(survey);
     }
-
 }

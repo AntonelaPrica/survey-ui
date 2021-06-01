@@ -9,8 +9,8 @@ import {QuestionFreetextControlName} from './question-freetext/question-freetext
 import {QuestionVariantsControlName} from './question-variants/question-variants.component';
 import {QuestionVariant, QuestionVariantForm} from './question-variants/question-variants.types';
 import {convertFormValueToVariantArray, createOptionControl} from './question-variants/question-variants.utils';
-import {convertFormFreeTextToString} from "./question-freetext/question-freetext.utils";
-import {QuestionFreeTextForm} from "./question-freetext/question-freetext.types";
+import {convertFormFreeTextToString} from './question-freetext/question-freetext.utils';
+import {QuestionFreeTextForm} from './question-freetext/question-freetext.types';
 
 
 export const createSurveyQuestion = (question: SurveyQuestion = null): FormGroup => {
