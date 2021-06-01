@@ -36,8 +36,8 @@ The allowed *QuestionTypes* are 'Free Text' or 'Variant'.
 
 Pressing the `Submit` button at the end of the survey will emit the `submitSurvey` event which will contain the survey with questions or answers.
 
-#### Usage Examples
-##### Builder
+### Usage Examples
+#### Builder
 `<sv-survey [survey]="survey" [isEditMode]="true">`
 ```js
 survey: Survey = {
@@ -47,7 +47,7 @@ survey: Survey = {
 ```
 ![builder](https://user-images.githubusercontent.com/47983382/120333023-f6e75b00-c2f7-11eb-8699-1b36bc0eff7c.PNG)
 
-##### Viewer
+#### Viewer
 `<sv-survey [survey]="survey" [isEditMode]="false">`
 ```js
 survey: Survey = {
