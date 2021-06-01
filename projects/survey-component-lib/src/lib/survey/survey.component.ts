@@ -47,7 +47,6 @@ export class SurveyComponent implements OnInit {
 
     onSubmit(): void {
         const survey = convertFormValueToSurvey(this.formGroup.value);
-        console.log(survey);
         this.submitSurvey.emit(survey);
     }
 }
